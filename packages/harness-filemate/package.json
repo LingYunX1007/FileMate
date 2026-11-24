@@ -1,0 +1,17 @@
+{
+  "name": "@filemate/harness-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {".": "./dist/index.js", "./agent": "./dist/agent.js"},
+  "scripts": {"build": "tsc -p tsconfig.json", "test": "node --experimental-strip-types --test test/*.test.ts"},
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-tools": "0.2.2-rc.5",
+    "@deepseek-ai/dsh-system-prompt": "0.2.2-rc.5",
+    "@deepseek-ai/dsh-host-webserver": "0.2.2-rc.5",
+    "@deepseek-ai/dsh-client-connection": "0.2.2-rc.5",
+    "@deepseek-ai/dsh-agent": "0.2.2-rc.5"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "filemate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @filemate/harness-plugin",
+    "test": "npm run test --workspace @filemate/harness-plugin",
+    "start": "node scripts/start-dsh.mjs",
+    "init:local": "node scripts/init-local.mjs",
+    "db:migrate": "node scripts/backend.mjs migrate",
+    "backend": "node scripts/backend.mjs api",
+    "worker": "node scripts/backend.mjs worker",
+    "test:backend": "node scripts/backend.mjs test",
+    "test:web": "node scripts/e2e-web.mjs"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh": "0.2.2-rc.5"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "playwright": "https://registry.npmjs.org/playwright/-/playwright-1.62.1.tgz",
+    "playwright-core": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.62.1.tgz",
+    "typescript": "5.9.3"
+  }
+}

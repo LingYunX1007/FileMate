@@ -1,0 +1,46 @@
+# Applied to an isolated dsh Web profile. No coding-agent presets are enabled.
+- id: preset-standard
+  disabled: true
+- id: preset-minimal
+  disabled: true
+- id: preset-cordis
+  disabled: true
+- id: preset-ptc
+  disabled: true
+- id: plugin-manager
+  disabled: true
+- id: tool-plugin-manager
+  disabled: true
+- id: agent-preset-registry
+  config:
+    default: filemate
+- insert:
+    - id: filemate-host
+      name: '@filemate/harness-plugin'
+    - id: preset-filemate
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: filemate
+        name: FileMate
+        description: 调查文件、提出计划、等待人工审核
+        order: 0
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: 你是 FileMate，通过证据和用户协作整理文件的助手。
+              includeRuntimeContext: false
+          - id: filemate-agent
+            name: '@filemate/harness-plugin/agent'
+          - id: time-context
+            name: '@deepseek-ai/dsh-time-context'
+          - id: compaction
+            name: cordis:group
+            group: true
+            isolate:
+              compaction: true
+            config:
+              - id: compaction-basic
+                name: '@deepseek-ai/dsh-compaction-basic'
+              - id: command-compact
+                name: '@deepseek-ai/dsh-command-compact'

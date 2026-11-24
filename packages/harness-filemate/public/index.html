@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FileMate 文件工作台</title>
+  <link rel="stylesheet" href="/filemate/style.css">
+  <script type="module" src="/filemate/app.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span><h1>FileMate <span>文件工作台</span></h1></div>
+      <nav aria-label="工作台视图">
+        <a href="/filemate" data-view="files" aria-current="page">目录与检索</a>
+        <a href="/filemate?view=plans" data-view="plans">计划审核</a>
+        <a href="/filemate?view=jobs" data-view="jobs">执行报告</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <section id="view-files" aria-labelledby="files-heading">
+      <h2 id="files-heading">目录与检索</h2>
+      <div class="workspace files-workspace">
+        <section class="card" aria-labelledby="roots-heading">
+          <header class="card-heading">
+            <h3 id="roots-heading">授权目录</h3>
+            <button type="button" id="refresh-roots" class="quiet">刷新</button>
+          </header>
+          <div id="root-list" class="entry-list"><p class="empty">正在加载目录…</p></div>
+          <details class="card-inset">
+            <summary>登记目录</summary>
+            <form id="root-form" class="stack">
+              <label>本机绝对路径 <input name="path" required placeholder="D:\资料" autocomplete="off"></label>
+              <label>显示名称 <span class="subtle">选填</span><input name="label" autocomplete="off"></label>
+              <button type="submit">登记目录</button>
+            </form>
+          </details>
+          <div id="root-summary" class="card-inset" hidden></div>
+        </section>
+
+        <div class="stack">
+          <section class="card" aria-labelledby="search-heading">
+            <header class="card-heading"><h3 id="search-heading">文件检索</h3></header>
+            <form class="card-inset stack" id="search-form">
+              <div class="form-grid">
+                <label>授权目录<select id="search-root" name="root" required disabled><option value="">选择目录</option></select></label>
+                <label>关键词<input name="query" type="search" placeholder="搜索文件名或正文" autocomplete="off"></label>
+              </div>
+              <details>
+                <summary>筛选条件</summary>
+                <div class="form-grid filters">
+                  <label>扩展名<input name="extension" placeholder="例如 pdf" autocomplete="off"></label>
+                  <label>修改日期从<input name="after" type="date"></label>
+                  <label>修改日期至<input name="before" type="date"></label>
+                </div>
+              </details>
+              <button type="submit" id="search-submit" class="primary" disabled>检索</button>
+            </form>
+            <div id="search-results" class="results"><p class="empty">选择已扫描目录后开始检索。</p></div>
+          </section>
+
+          <section class="card" id="file-card" aria-labelledby="file-heading" hidden>
+            <header class="card-heading">
+              <h3 id="file-heading" tabindex="-1">文件与证据</h3>
+              <button type="button" id="close-file" class="quiet">关闭</button>
+            </header>
+            <div id="file-detail" class="card-inset"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-plans" aria-labelledby="plans-heading" hidden>
+      <h2 id="plans-heading">计划审核</h2>
+      <div class="workspace">
+        <section class="card" aria-labelledby="plan-list-heading">
+          <header class="card-heading">
+            <h3 id="plan-list-heading">整理计划</h3>
+            <button type="button" id="refresh-plans" class="quiet">刷新</button>
+          </header>
+          <div id="plan-list" class="entry-list"><p class="empty">正在加载计划…</p></div>
+        </section>
+        <section class="card detail-card" id="plan-detail" aria-label="计划详情"><p class="empty">选择计划，检查源路径、目标路径和依据。</p></section>
+      </div>
+    </section>
+
+    <section id="view-jobs" aria-labelledby="jobs-heading" hidden>
+      <h2 id="jobs-heading">执行报告</h2>
+      <div class="workspace">
+        <section class="card" aria-labelledby="job-list-heading">
+          <header class="card-heading">
+            <h3 id="job-list-heading">执行记录</h3>
+            <button type="button" id="refresh-jobs" class="quiet">刷新</button>
+          </header>
+          <div id="job-list" class="entry-list"><p class="empty">正在加载记录…</p></div>
+        </section>
+        <section class="card detail-card" id="job-detail" aria-label="执行详情"><p class="empty">选择执行记录，查看逐项结果与操作事件。</p></section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

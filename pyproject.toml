@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "filemate-backend"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.14,<2",
+    "fastapi>=0.121,<0.130",
+    "psycopg[binary]>=3.2,<4",
+    "pydantic>=2.9,<3",
+    "pypdf>=5,<7",
+    "python-docx>=1.1,<2",
+    "sqlalchemy>=2.0,<2.2",
+    "uvicorn>=0.32,<1",
+]
+
+[project.optional-dependencies]
+test = ["httpx>=0.28,<1", "pytest>=8,<10"]
+
+[tool.setuptools.packages.find]
+include = ["services.filemate*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
